@@ -1,0 +1,155 @@
+﻿.wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 36px;
+  gap: 8px;
+}
+
+/* ============================================================
+   Circular Arrow Navigation Buttons
+   ============================================================ */
+.arrowBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gray-400);
+  background: var(--color-white);
+  color: var(--color-gray-900);
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+}
+
+.arrowBtn:hover {
+  border-color: var(--color-gray-900);
+  background: var(--color-gray-100);
+  transform: scale(1.05);
+}
+
+.arrowBtn:focus-visible {
+  outline: 2px solid var(--color-gray-900);
+  outline-offset: 2px;
+}
+
+.leftBtn {
+  margin-right: 2px;
+}
+
+.rightBtn {
+  margin-left: 2px;
+}
+
+/* ============================================================
+   Horizontal Scroll Container
+   ============================================================ */
+.scrollTrack {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  padding: 4px 2px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.scrollTrack::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* ============================================================
+   Review Category Chip (Pill)
+   ============================================================ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 24px;
+  border: 1px solid var(--color-gray-400);
+  background: var(--color-white);
+  color: var(--color-gray-900);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+  user-select: none;
+}
+
+.chip:hover {
+  border-color: var(--color-gray-900);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--color-gray-900);
+  outline-offset: 2px;
+}
+
+.chipSelected {
+  background: var(--color-gray-900);
+  color: var(--color-white);
+  border-color: var(--color-gray-900);
+}
+
+.chipSelected .chipCount {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.chipSelected .chipImg {
+  filter: brightness(0) invert(1);
+}
+
+/* ============================================================
+   Chip Content Elements
+   ============================================================ */
+.iconWrap {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chipImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.chipLabel {
+  line-height: 1.2;
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+.chipCount {
+  font-size: 13px;
+  color: var(--color-gray-600);
+  font-weight: var(--font-weight-normal);
+  margin-left: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollTrack {
+    scroll-behavior: auto;
+  }
+  .arrowBtn {
+    transition: none;
+  }
+  .chip {
+    transition: none;
+  }
+}

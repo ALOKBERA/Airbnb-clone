@@ -1,0 +1,191 @@
+.section {
+  padding: 16px 0 24px 0;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 6px;
+}
+
+.locationName {
+  font-size: 16px;
+  font-weight: var(--font-weight-normal);
+  color: var(--color-gray-700);
+  margin-bottom: 24px;
+}
+
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: #e5e3df;
+  border: 1px solid var(--color-gray-300);
+}
+
+.mapIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  filter: contrast(1.02) brightness(0.98);
+}
+
+/* ============================================================
+   Center Airbnb Pin with Translucent Circle & House Badge
+   ============================================================ */
+.pinOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.pulseRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110px;
+  height: 110px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgba(255, 56, 92, 0.16);
+  border: 1.5px solid rgba(255, 56, 92, 0.4);
+  animation: pulseAnim 3s infinite ease-in-out;
+}
+
+@keyframes pulseAnim {
+  0% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+.homePinBadge {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 56, 92, 0.4);
+  z-index: 2;
+  margin-bottom: 8px;
+}
+
+.mapLabel {
+  position: relative;
+  background: var(--color-white);
+  color: var(--color-gray-900);
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* ============================================================
+   Map Controls (Zoom in / Zoom out)
+   ============================================================ */
+.mapControls {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.zoomBtn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--color-white);
+  color: var(--color-gray-800);
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.zoomBtn:hover {
+  background: var(--color-gray-100);
+}
+
+.zoomDivider {
+  height: 1px;
+  background: var(--color-gray-300);
+}
+
+/* ============================================================
+   Description & Show more
+   ============================================================ */
+.descWrap {
+  margin-top: 8px;
+}
+
+.description {
+  font-size: 16px;
+  color: var(--color-gray-800);
+  line-height: var(--line-height-loose);
+  margin-bottom: 12px;
+}
+
+.showMapBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+  font-family: inherit;
+  transition: color var(--transition-fast);
+}
+
+.showMapBtn:hover {
+  color: var(--color-gray-700);
+}
+
+.chevronDown {
+  transition: transform var(--transition-fast);
+}
+
+.chevronUp {
+  transform: rotate(180deg);
+  transition: transform var(--transition-fast);
+}
+

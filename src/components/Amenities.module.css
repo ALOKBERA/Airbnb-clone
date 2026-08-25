@@ -1,0 +1,59 @@
+﻿.section {
+  padding: 12px 0;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  row-gap: 16px;
+  margin-bottom: 32px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ============================================================
+   Outlined "Show all 50 amenities" Button
+   ============================================================ */
+.showAllBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 23px;
+  border: 1.5px solid var(--color-gray-900);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  font-family: inherit;
+}
+
+.showAllBtn:hover {
+  background: var(--color-gray-100);
+}
+
+.showAllBtn:focus-visible {
+  outline: 2px solid var(--color-gray-900);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1280px) {
+  .grid {
+    column-gap: 24px;
+  }
+}

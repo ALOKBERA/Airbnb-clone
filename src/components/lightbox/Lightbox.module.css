@@ -1,0 +1,169 @@
+﻿/* Lightbox.module.css — dark overlay image viewer */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  flex-direction: column;
+  animation: lbFadeIn 220ms ease forwards;
+  pointer-events: all;
+}
+
+@keyframes lbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  flex-shrink: 0;
+  position: relative;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 100%);
+}
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease;
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.counter {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.02em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.topActionBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: background 120ms ease;
+  font-family: inherit;
+}
+
+.topActionBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.imageArea {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 24px 80px 40px;
+  min-height: 0;
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.navBtn:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.navBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.prevBtn { left: 24px; }
+.nextBtn { right: 24px; }
+
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: calc(100% - 120px);
+  max-height: 100%;
+}
+
+.img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 180px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  user-select: none;
+  animation: imgEnter 200ms ease forwards;
+}
+
+@keyframes imgEnter {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.caption {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+}
+
+.overlay :focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay { animation: none; }
+  .img     { animation: none; }
+}

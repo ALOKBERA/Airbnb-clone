@@ -1,0 +1,87 @@
+﻿.section {
+  padding-top: 48px;
+  padding-bottom: 24px;
+  border-top: 1px solid var(--color-gray-300);
+}
+
+.title {
+  font-size: 22px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 48px;
+  width: 100%;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.iconWrap {
+  color: var(--color-gray-900);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 28px;
+}
+
+.colTitle {
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.contentList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.itemText {
+  font-size: 15px;
+  color: var(--color-gray-800);
+  line-height: 1.45;
+}
+
+.learnMoreBtn {
+  font-size: 15px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-family: inherit;
+  transition: color var(--transition-fast);
+  margin-top: auto;
+}
+
+.learnMoreBtn:hover {
+  color: var(--color-gray-700);
+}
+
+.learnMoreBtn:focus-visible {
+  outline: 2px solid var(--color-gray-900);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1280px) {
+  .grid {
+    gap: 24px 32px;
+  }
+}

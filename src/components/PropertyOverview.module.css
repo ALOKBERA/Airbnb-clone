@@ -1,0 +1,130 @@
+.section {
+  padding: 32px 0 8px 0;
+}
+
+/* Type + stats */
+.typeBlock {
+  margin-bottom: 24px;
+}
+
+.typeTitle {
+  font-size: 22px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 4px;
+  line-height: var(--line-height-snug);
+}
+
+.statsRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  color: var(--color-gray-700);
+  flex-wrap: wrap;
+}
+
+.dot {
+  color: var(--color-gray-500);
+}
+
+/* Guest favourite badge */
+.badgeRow {
+  margin-bottom: 28px;
+}
+
+.ratingBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+.ratingLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.ratingNum {
+  font-size: 22px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-900);
+  line-height: 1;
+}
+
+.starsWrap {
+  display: flex;
+  gap: 1px;
+}
+
+.starFull {
+  color: var(--color-brand);
+}
+
+.starEmpty {
+  color: var(--color-gray-300);
+}
+
+.ratingRight {
+  border-left: 1px solid var(--color-gray-300);
+  padding-left: 12px;
+}
+
+.badgeLabel {
+  font-size: 13px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 2px;
+}
+
+.reviewsLink {
+  font-size: 12px;
+  color: var(--color-gray-600);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Highlights */
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.highlightIcon {
+  flex-shrink: 0;
+  width: 32px;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 2px;
+  color: var(--color-gray-900);
+}
+
+.highlightTitle {
+  font-size: 15px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+  margin-bottom: 2px;
+}
+
+.highlightDesc {
+  font-size: 14px;
+  color: var(--color-gray-600);
+  line-height: var(--line-height-base);
+}

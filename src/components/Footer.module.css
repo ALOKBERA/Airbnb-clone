@@ -1,0 +1,127 @@
+﻿.footer {
+  border-top: 1px solid var(--color-gray-300);
+  background: var(--color-white);
+}
+
+.inner {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-padding-h);
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--color-gray-300);
+}
+
+.col {}
+
+.colHeading {
+  font-size: 13px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 16px;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.link {
+  font-size: 14px;
+  color: var(--color-gray-700);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-gray-900);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  gap: 16px;
+}
+
+.bottomLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-size: 13px;
+  color: var(--color-gray-700);
+}
+
+.sep {
+  color: var(--color-gray-500);
+  font-size: 13px;
+}
+
+.bottomLink {
+  font-size: 13px;
+  color: var(--color-gray-700);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.bottomLink:hover {
+  color: var(--color-gray-900);
+  text-decoration: underline;
+}
+
+.bottomRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.langBtn,
+.currencyBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-900);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.langBtn:hover,
+.currencyBtn:hover {
+  color: var(--color-gray-700);
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.socialLink {
+  color: var(--color-gray-700);
+  display: flex;
+  align-items: center;
+  transition: color var(--transition-fast);
+}
+
+.socialLink:hover {
+  color: var(--color-gray-900);
+}

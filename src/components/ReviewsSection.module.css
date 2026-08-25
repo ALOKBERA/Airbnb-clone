@@ -1,0 +1,346 @@
+﻿.section {
+  padding-top: 16px;
+  padding-bottom: 24px;
+}
+
+/* ============================================================
+   1. HERO BANNER (Centered Large 4.95 with Laurels)
+   ============================================================ */
+.heroBanner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 8px 0;
+}
+
+.laurelContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.laurelSvg {
+  color: var(--color-gray-900);
+  flex-shrink: 0;
+}
+
+.heroScoreCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroScoreNumber {
+  font-size: 80px;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.heroTitle {
+  font-size: 22px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.heroSubtitle {
+  font-size: 15px;
+  color: var(--color-gray-600);
+  max-width: 440px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.howReviewsWork {
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color var(--transition-fast);
+}
+
+.howReviewsWork:hover {
+  color: var(--color-gray-700);
+}
+
+/* ============================================================
+   2. HORIZONTAL RATING MATRIX ROW
+   ============================================================ */
+.matrixRow {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 32px;
+  padding: 8px 0;
+}
+
+/* Column 1: Overall rating */
+.overallCol {
+  width: 170px;
+  flex-shrink: 0;
+  padding-right: 24px;
+}
+
+.colTitle {
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.histogram {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.histoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.histoStarNum {
+  font-size: 12px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  width: 8px;
+  text-align: right;
+}
+
+.histoTrack {
+  flex: 1;
+  height: 4px;
+  background: var(--color-gray-300);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.histoFill {
+  height: 100%;
+  background: var(--color-gray-900);
+  border-radius: 2px;
+}
+
+/* Remaining Category Columns */
+.categoryCol {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.vDivider {
+  width: 1px;
+  background: var(--color-gray-300);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+.colContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 18px;
+  min-width: 0;
+}
+
+.colScore {
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-gray-900);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.colIcon {
+  color: var(--color-gray-900);
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+.subDivider {
+  border: none;
+  border-top: 1px solid var(--color-gray-300);
+  margin: 16px 0 32px;
+}
+
+/* ============================================================
+   3. REVIEW CARDS (2-COLUMN GRID MATCHING IMAGE 1)
+   ============================================================ */
+.reviewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 80px;
+  margin-bottom: 40px;
+}
+
+.reviewCard {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.avatarImg {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.avatarInitials {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  flex-shrink: 0;
+}
+
+.reviewerInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewerName {
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.reviewerMeta {
+  font-size: 14px;
+  color: var(--color-gray-600);
+  line-height: 1.2;
+}
+
+.ratingDateRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.starsRow {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--color-gray-900);
+}
+
+.starSvg {
+  display: block;
+}
+
+.reviewDate {
+  font-size: 14px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+}
+
+.reviewText {
+  font-size: 16px;
+  color: var(--color-gray-800);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.showMoreBtn {
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  font-family: inherit;
+  align-self: flex-start;
+  transition: color var(--transition-fast);
+}
+
+.showMoreBtn:hover {
+  color: var(--color-gray-700);
+}
+
+/* ============================================================
+   4. SHOW ALL BUTTON
+   ============================================================ */
+.showAllBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 24px;
+  border: 1.5px solid var(--color-gray-900);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  font-family: inherit;
+}
+
+.showAllBtn:hover {
+  background: var(--color-gray-100);
+}
+
+.showAllBtn:focus-visible {
+  outline: 2px solid var(--color-gray-900);
+  outline-offset: 2px;
+}
+
+@media (max-width: 1366px) {
+  .colContent {
+    padding: 0 12px;
+  }
+  .reviewGrid {
+    gap: 32px 56px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .overallCol {
+    width: 140px;
+    padding-right: 16px;
+  }
+  .colContent {
+    padding: 0 10px;
+  }
+  .colScore {
+    font-size: 16px;
+  }
+  .reviewGrid {
+    gap: 28px 40px;
+  }
+}

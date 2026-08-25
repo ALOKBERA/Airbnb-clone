@@ -1,0 +1,190 @@
+.stickyNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-300);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease;
+}
+
+.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.container {
+  max-width: var(--page-max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--page-padding-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.tabList {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tabItem {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.tabBtn {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-700);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color var(--transition-fast);
+  font-family: inherit;
+}
+
+.tabBtn:hover {
+  color: var(--color-gray-900);
+}
+
+.activeTab {
+  color: var(--color-gray-900);
+  font-weight: var(--font-weight-semibold);
+}
+
+.activeBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-gray-900);
+  border-radius: 2px 2px 0 0;
+}
+
+.rightSummary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.priceMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.priceLine {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.priceAmount {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-gray-900);
+}
+
+.pricePeriod {
+  color: var(--color-gray-700);
+  font-size: 13px;
+}
+
+.ratingLine {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--color-gray-900);
+  margin-top: 2px;
+}
+
+.starIcon {
+  color: var(--color-brand);
+}
+
+.ratingScore {
+  font-weight: var(--font-weight-semibold);
+}
+
+.dot {
+  color: var(--color-gray-600);
+}
+
+.reviewsLink {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  color: var(--color-gray-600);
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.reviewsLink:hover {
+  color: var(--color-gray-900);
+}
+
+.reserveBtn {
+  background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  color: var(--color-white);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  font-family: inherit;
+}
+
+.reserveBtn:hover {
+  opacity: 0.94;
+  transform: scale(1.02);
+}
+
+.reserveBtn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 1280px) {
+  .tabList {
+    gap: 16px;
+  }
+  .reserveBtn {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stickyNav {
+    transition: none;
+  }
+}

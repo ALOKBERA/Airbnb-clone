@@ -1,0 +1,315 @@
+﻿/* ============================================================
+   PhotoTour.module.css
+   Full-screen white gallery: left thumbnail sidebar + right main view.
+   ============================================================ */
+
+/* ── Overlay ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  animation: ptFadeIn 200ms ease forwards;
+}
+
+@keyframes ptFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Top bar ── */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--color-gray-300);
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.closeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: background var(--transition-fast);
+}
+
+.closeBtn:hover {
+  background: var(--color-gray-200);
+}
+
+.topActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.topActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: var(--color-gray-700);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: background var(--transition-fast);
+}
+
+.topActionBtn:hover {
+  background: var(--color-gray-200);
+  color: var(--color-gray-900);
+}
+
+/* ── Body: sidebar + main ── */
+.body {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  overflow-y: auto;
+  border-right: 1px solid var(--color-gray-300);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  /* Custom thin scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-400) transparent;
+}
+
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400);
+  border-radius: 4px;
+}
+
+/* ── Thumbnail button ── */
+.thumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.thumb:hover {
+  background: var(--color-gray-100);
+}
+
+.thumbActive {
+  border-color: var(--color-gray-900) !important;
+  background: var(--color-gray-100);
+}
+
+.thumbImg {
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: var(--color-gray-200);
+}
+
+.thumbMeta {
+  min-width: 0;
+}
+
+.thumbCaption {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.thumbRoom {
+  font-size: 12px;
+  color: var(--color-gray-600);
+}
+
+/* ── Main view ── */
+.mainView {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-400) transparent;
+}
+
+.mainView::-webkit-scrollbar { width: 4px; }
+.mainView::-webkit-scrollbar-thumb {
+  background: var(--color-gray-400);
+  border-radius: 4px;
+}
+
+.mainScroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 48px 48px;
+  gap: 16px;
+  flex: 1;
+}
+
+/* ── Prev/Next nav row above image ── */
+.navRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  align-self: flex-start;
+}
+
+.tourNavBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-gray-400);
+  background: #fff;
+  color: var(--color-gray-700);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.tourNavBtn:hover:not(:disabled) {
+  border-color: var(--color-gray-900);
+  background: var(--color-gray-100);
+}
+
+.tourNavBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.navCount {
+  font-size: 14px;
+  color: var(--color-gray-600);
+  font-weight: 500;
+  min-width: 56px;
+  text-align: center;
+}
+
+/* ── Main image button ── */
+.mainImageBtn {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 0;
+  /* Subtle lift on hover */
+  transition: box-shadow var(--transition-base);
+}
+
+.mainImageBtn:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.mainImageBtn:hover .zoomHint {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Zoom icon overlay */
+.zoomHint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: var(--color-gray-900);
+  opacity: 0;
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  pointer-events: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.mainImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 220px);
+  object-fit: contain;
+  background: var(--color-gray-200);
+  animation: mainImgEnter 180ms ease forwards;
+}
+
+@keyframes mainImgEnter {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+
+/* ── Caption ── */
+.imageInfo {
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.imageName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 4px;
+}
+
+.imageDetails {
+  font-size: 14px;
+  color: var(--color-gray-600);
+}
+
+/* ── Focus ring override for white bg ── */
+.overlay :focus-visible {
+  outline: 2px solid var(--color-gray-900);
+  outline-offset: 2px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .overlay   { animation: none; }
+  .mainImg   { animation: none; }
+}
