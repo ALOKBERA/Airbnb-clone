@@ -1,6 +1,6 @@
 /**
  * mainPropertyPhotoTour.js
- * Single Source of Truth for "Romantic Jacuzzi 1BHK Condo/Isle | Himadhar US19".
+ * Single Source of Truth for "Romantic Jacuzzi 1BHK Candolim | Mirashya UG10".
  * Sourced directly from reference: https://airbnb-clone-umber-two.vercel.app/?modal=PHOTO_TOUR_SCROLLABLE
  *
  * Drives:

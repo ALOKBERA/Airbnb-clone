@@ -5,8 +5,8 @@
  */
 
 export const property = {
-  id: "himadhar-us19",
-  title: "Romantic Jacuzzi 1BHK Condo/Isle | Himadhar US19",
+  id: "mirashya-ug10",
+  title: "Romantic Jacuzzi 1BHK Candolim | Mirashya UG10",
   type: "Entire serviced apartment",
   location: {
     city: "Candolim",
