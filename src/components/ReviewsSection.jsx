@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "./ReviewsSection.module.css";
 import { reviews } from "../data/reviews.js";
 import ReviewCategoryCarousel from "./reviews/ReviewCategoryCarousel.jsx";
+import laurelLeft from "../../image/laurel-left.png";
+import laurelRight from "../../image/laurel-right.png";
 
 const HISTOGRAM = [
   { star: 5, fillPercent: 95 },
@@ -83,33 +85,41 @@ const RATING_COLUMNS = [
  */
 export default function ReviewsSection({ property }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [expandedReviews, setExpandedReviews] = useState({});
   const ratingCount = property?.rating?.count || 19;
+
+  const toggleReviewExpand = (id) => {
+    setExpandedReviews((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   return (
     <section id="reviews" className={styles.section} aria-labelledby="reviews-heading">
       {/* ── 1. Hero Rating Header (Large 4.95 with Laurels) ── */}
       <div className={styles.heroBanner}>
         <div className={styles.laurelContainer}>
-          {/* Left Laurel Leaves */}
-          <svg viewBox="0 0 50 90" width="50" height="90" className={styles.laurelSvg} aria-hidden="true">
-            <path d="M42 85 C28 65, 12 45, 14 10 C16 4, 25 2, 28 2 C22 10, 20 28, 32 48 C38 58, 44 72, 42 85 Z" fill="currentColor"/>
-            <path d="M28 24 C18 20, 8 24, 4 34 C14 32, 22 30, 28 24 Z" fill="currentColor"/>
-            <path d="M33 44 C22 40, 10 47, 5 57 C16 54, 25 50, 33 44 Z" fill="currentColor"/>
-            <path d="M36 66 C26 65, 14 74, 11 84 C21 80, 28 75, 36 66 Z" fill="currentColor"/>
-          </svg>
+          {/* Left Laurel */}
+          <img
+            src={laurelLeft}
+            alt=""
+            className={styles.laurelImg}
+            aria-hidden="true"
+          />
 
           {/* Center Score */}
           <div className={styles.heroScoreCenter}>
             <span className={styles.heroScoreNumber}>4.95</span>
           </div>
 
-          {/* Right Laurel Leaves */}
-          <svg viewBox="0 0 50 90" width="50" height="90" className={styles.laurelSvg} style={{ transform: "scaleX(-1)" }} aria-hidden="true">
-            <path d="M42 85 C28 65, 12 45, 14 10 C16 4, 25 2, 28 2 C22 10, 20 28, 32 48 C38 58, 44 72, 42 85 Z" fill="currentColor"/>
-            <path d="M28 24 C18 20, 8 24, 4 34 C14 32, 22 30, 28 24 Z" fill="currentColor"/>
-            <path d="M33 44 C22 40, 10 47, 5 57 C16 54, 25 50, 33 44 Z" fill="currentColor"/>
-            <path d="M36 66 C26 65, 14 74, 11 84 C21 80, 28 75, 36 66 Z" fill="currentColor"/>
-          </svg>
+          {/* Right Laurel */}
+          <img
+            src={laurelRight}
+            alt=""
+            className={styles.laurelImg}
+            aria-hidden="true"
+          />
         </div>
 
         <h2 id="reviews-heading" className={styles.heroTitle}>
@@ -172,66 +182,76 @@ export default function ReviewsSection({ property }) {
 
       {/* ── 4. Review Cards 2-Column Grid Matching Reference ── */}
       <div className={styles.reviewGrid}>
-        {reviews.map((r) => (
-          <article key={r.id} className={styles.reviewCard}>
-            {/* Reviewer Header */}
-            <div className={styles.reviewer}>
-              {r.avatar ? (
-                <img
-                  src={r.avatar}
-                  alt={r.author}
-                  className={styles.avatarImg}
-                  loading="lazy"
-                />
-              ) : (
-                <div
-                  className={styles.avatarInitials}
-                  style={{
-                    backgroundColor: r.initialBg || "#f3e8db",
-                    color: r.initialColor || "#713b12",
-                  }}
-                  aria-hidden="true"
-                >
-                  <span>{r.initials}</span>
-                </div>
-              )}
-              <div className={styles.reviewerInfo}>
-                <p className={styles.reviewerName}>{r.author}</p>
-                <p className={styles.reviewerMeta}>{r.tenure}</p>
-              </div>
-            </div>
+        {reviews.map((r) => {
+          const isExpanded = !!expandedReviews[r.id];
+          const reviewText = isExpanded && r.fullText ? r.fullText : r.text;
 
-            {/* Stars + Date */}
-            <div className={styles.ratingDateRow}>
-              <div className={styles.starsRow} aria-label="5 out of 5 stars">
-                {[...Array(5)].map((_, i) => (
-                  <svg
-                    key={i}
-                    viewBox="0 0 32 32"
-                    width="10"
-                    height="10"
-                    fill="currentColor"
-                    className={styles.starSvg}
+          return (
+            <article key={r.id} className={styles.reviewCard}>
+              {/* Reviewer Header */}
+              <div className={styles.reviewer}>
+                {r.avatar ? (
+                  <img
+                    src={r.avatar}
+                    alt={r.author}
+                    className={styles.avatarImg}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    className={styles.avatarInitials}
+                    style={{
+                      backgroundColor: r.initialBg || "#f3e8db",
+                      color: r.initialColor || "#713b12",
+                    }}
                     aria-hidden="true"
                   >
-                    <path d="M15.094 1.579l-4.124 8.485-9.86 1.32a1 1 0 0 0-.542 1.736l7.293 6.602-1.965 9.842a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.674a1 1 0 0 0 1.482-1.06l-1.965-9.843 7.293-6.602a1 1 0 0 0-.541-1.735l-9.86-1.32-4.126-8.485a1 1 0 0 0-1.814 0z" />
-                  </svg>
-                ))}
+                    <span>{r.initials}</span>
+                  </div>
+                )}
+                <div className={styles.reviewerInfo}>
+                  <p className={styles.reviewerName}>{r.author}</p>
+                  <p className={styles.reviewerMeta}>{r.tenure}</p>
+                </div>
               </div>
-              <span className={styles.reviewDate}>· {r.date}</span>
-            </div>
 
-            {/* Review Content */}
-            <p className={styles.reviewText}>{r.text}</p>
+              {/* Stars + Date */}
+              <div className={styles.ratingDateRow}>
+                <div className={styles.starsRow} aria-label="5 out of 5 stars">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      viewBox="0 0 32 32"
+                      width="10"
+                      height="10"
+                      fill="currentColor"
+                      className={styles.starSvg}
+                      aria-hidden="true"
+                    >
+                      <path d="M15.094 1.579l-4.124 8.485-9.86 1.32a1 1 0 0 0-.542 1.736l7.293 6.602-1.965 9.842a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.674a1 1 0 0 0 1.482-1.06l-1.965-9.843 7.293-6.602a1 1 0 0 0-.541-1.735l-9.86-1.32-4.126-8.485a1 1 0 0 0-1.814 0z" />
+                    </svg>
+                  ))}
+                </div>
+                <span className={styles.reviewDate}>· {r.date}</span>
+              </div>
 
-            {/* Show more button if long */}
-            {r.hasShowMore && (
-              <button type="button" className={styles.showMoreBtn}>
-                Show more
-              </button>
-            )}
-          </article>
-        ))}
+              {/* Review Content */}
+              <p className={styles.reviewText}>{reviewText}</p>
+
+              {/* Show more / Show less button if long */}
+              {r.hasShowMore && (
+                <button
+                  type="button"
+                  className={styles.showMoreBtn}
+                  onClick={() => toggleReviewExpand(r.id)}
+                  aria-expanded={isExpanded}
+                >
+                  {isExpanded ? "Show less >" : "Show more >"}
+                </button>
+              )}
+            </article>
+          );
+        })}
       </div>
 
       {/* ── 5. Show all 19 reviews button ── */}

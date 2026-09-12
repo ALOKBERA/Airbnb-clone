@@ -1,4 +1,4 @@
-﻿import styles from "./ListingPage.module.css";
+import styles from "./ListingPage.module.css";
 import ListingHeader from "./ListingHeader.jsx";
 import PhotoGallery from "./PhotoGallery.jsx";
 import PropertyOverview from "./PropertyOverview.jsx";
@@ -73,10 +73,6 @@ export default function ListingPage({
           <div className={styles.mainCol}>
             <PropertyOverview property={property} />
             <hr className={styles.divider} />
-            <HostSection property={property} />
-            <hr className={styles.divider} />
-            <Description property={property} />
-            <hr className={styles.divider} />
             <Amenities property={property} />
             <hr className={styles.divider} />
             <DatePicker property={property} />
@@ -98,6 +94,8 @@ export default function ListingPage({
         <LocationSection property={property} />
 
         <hr className={styles.divider} />
+
+        <HostSection property={property} />
 
         <ThingsToKnow property={property} />
 

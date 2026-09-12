@@ -7,7 +7,7 @@
 export const images = [
   {
     id: 1,
-    src: "/images/main-property/livingroom01.avif",
+    src: "/images/main-property/livingroom07.avif",
     fallback: "/images/room-01.jpg",
     alt: "Bright living room with comfortable yellow sofa, wooden accents, and warm lighting",
     caption: "Living room 1",
@@ -16,7 +16,7 @@ export const images = [
   },
   {
     id: 2,
-    src: "/images/main-property/bedroom01.avif",
+    src: "/images/main-property/livingroom04.avif",
     fallback: "/images/room-02.jpg",
     alt: "Cozy bedroom with double bed and warm ambient lighting",
     caption: "Bedroom",
@@ -25,7 +25,7 @@ export const images = [
   },
   {
     id: 3,
-    src: "/images/main-property/exterior01.avif",
+    src: "/images/main-property/livingroom05.avif",
     fallback: "/images/room-03.jpg",
     alt: "Exterior view of the building with lush green surroundings",
     caption: "Building exterior",
@@ -34,7 +34,7 @@ export const images = [
   },
   {
     id: 4,
-    src: "/images/main-property/kitchen01.avif",
+    src: "/images/main-property/bedroom01.avif",
     fallback: "/images/room-04.jpg",
     alt: "Kitchen with modern appliances and dining area",
     caption: "Kitchen & dining",
@@ -43,7 +43,7 @@ export const images = [
   },
   {
     id: 5,
-    src: "/images/main-property/pool01.avif",
+    src: "/images/main-property/exterior04.avif",
     fallback: "/images/room-08.jpg",
     alt: "Private jacuzzi and swimming pool access",
     caption: "Pool & Jacuzzi",

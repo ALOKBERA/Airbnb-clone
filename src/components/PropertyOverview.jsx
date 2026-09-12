@@ -1,44 +1,54 @@
-﻿import styles from "./PropertyOverview.module.css";
+import { useState } from "react";
+import styles from "./PropertyOverview.module.css";
 
-function SelfCheckinIcon() {
+function OutdoorIcon() {
   return (
-    <svg viewBox="0 0 32 32" width="24" height="24" fill="none" aria-hidden="true">
-      <path d="M26 12H14a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V14a2 2 0 0 0-2-2z" stroke="currentColor" strokeWidth="2"/>
-      <path d="M8 8V6a2 2 0 0 1 2-2h4M18 22v-4a2 2 0 0 0-2-2h-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-      <circle cx="20" cy="19" r="1.5" fill="currentColor"/>
+    <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M6 14h20v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V14z" />
+      <path d="M16 6v8M10 10l6-4 6 4" />
     </svg>
   );
 }
 
-function LocationPinIcon() {
+function CoolIcon() {
   return (
-    <svg viewBox="0 0 32 32" width="24" height="24" fill="none" aria-hidden="true">
-      <path d="M16 3C10.48 3 6 7.48 6 13c0 8.25 10 18 10 18s10-9.75 10-18c0-5.52-4.48-10-10-10zm0 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+    <svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" aria-hidden="true">
+      {/* Fan center hub */}
+      <circle cx="16" cy="16" r="2.5" fill="currentColor" />
+      {/* Fan blade 1 - top */}
+      <path d="M16 13.5 C16 10 18 6 20 5 C22 4 24 5 24 7 C24 9 22 11 19 13 Z" />
+      {/* Fan blade 2 - bottom-left */}
+      <path d="M13.8 17.2 C11 19 7 20 5.5 19 C4 18 4 16 5.5 14.5 C7 13 9.5 13.5 12.5 15.5 Z" />
+      {/* Fan blade 3 - bottom-right */}
+      <path d="M18.2 17.2 C20 20 20.5 24 19.5 25.5 C18.5 27 16.5 27 15 25.5 C13.5 24 14 21 16 18 Z" />
     </svg>
   );
 }
 
-function FreeCancelIcon() {
+function DoorIcon() {
   return (
-    <svg viewBox="0 0 32 32" width="24" height="24" fill="none" aria-hidden="true">
-      <path d="M4 16A12 12 0 1 1 16 28" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M4 24v-8H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M12 16l4 4 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M6 4h14a2 2 0 0 1 2 2v20a2 2 0 0 1-2 2H6M6 4v24" />
+      <circle cx="17" cy="16" r="1.5" fill="currentColor" />
     </svg>
   );
 }
 
 function getHighlightIcon(iconKey) {
   switch (iconKey) {
-    case "door":     return <SelfCheckinIcon />;
-    case "location": return <LocationPinIcon />;
-    case "calendar": return <FreeCancelIcon />;
-    default:         return null;
+    case "outdoor": return <OutdoorIcon />;
+    case "cool":    return <CoolIcon />;
+    case "door":    return <DoorIcon />;
+    default:        return <DoorIcon />;
   }
 }
 
 export default function PropertyOverview({ property }) {
-  const { type, location, stats, rating, badge, highlights } = property;
+  const { type, location, stats, rating, host, highlights, description } = property;
+  const [showOriginal, setShowOriginal] = useState(false);
+  const [descExpanded, setDescExpanded] = useState(false);
+
+  const descText = Array.isArray(description) ? description[0] : String(description || "");
 
   return (
     <section className={styles.section} aria-label="Property overview">
@@ -52,65 +62,141 @@ export default function PropertyOverview({ property }) {
           <span className={styles.dot} aria-hidden="true">·</span>
           <span>{stats.bedrooms} bedroom</span>
           <span className={styles.dot} aria-hidden="true">·</span>
-          <span>{stats.beds} beds</span>
+          <span>{stats.beds} bed</span>
           <span className={styles.dot} aria-hidden="true">·</span>
-          <span>{stats.bathrooms} bath</span>
+          <span>{stats.bathrooms} bathroom</span>
         </p>
       </div>
 
-      {/* Guest favourite badge */}
-      <div className={styles.badgeRow}>
-        <div
-          className={styles.ratingBadge}
-          aria-label={`${badge}. Rated ${rating.average} out of 5 from ${rating.count} reviews`}
-        >
-          <div className={styles.ratingLeft}>
-            <span className={styles.ratingNum}>{rating.average}</span>
-            <span className={styles.starsWrap} aria-hidden="true">
-              {[...Array(5)].map((_, i) => (
-                <svg
-                  key={i}
-                  viewBox="0 0 32 32"
-                  width="11"
-                  height="11"
-                  className={i < Math.round(rating.average) ? styles.starFull : styles.starEmpty}
-                >
-                  <path
-                    d="M15.094 1.579l-4.124 8.485-9.86 1.32a1 1 0 0 0-.542 1.736l7.293 6.602-1.965 9.842a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.674a1 1 0 0 0 1.482-1.06l-1.965-9.843 7.293-6.602a1 1 0 0 0-.541-1.735l-9.86-1.32-4.126-8.485a1 1 0 0 0-1.814 0z"
-                    fill="currentColor"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              ))}
-            </span>
+      {/* Guest favourite full-width horizontal card */}
+      <div className={styles.guestFavCard}>
+        <div className={styles.favLeft}>
+          <div className={styles.laurelWrap}>
+            <span className={styles.laurelIcon} aria-hidden="true">🌿</span>
+            <div className={styles.favTitle}>
+              <span>Guest</span>
+              <span>favourite</span>
+            </div>
+            <span className={styles.laurelIcon} aria-hidden="true">🌿</span>
           </div>
-          <div className={styles.ratingRight}>
-            <p className={styles.badgeLabel}>{badge}</p>
+          <p className={styles.favTagline}>
+            One of the most loved homes on Airbnb, according to guests
+          </p>
+        </div>
+
+        <div className={styles.favRight}>
+          <div className={styles.scoreBlock}>
+            <span className={styles.scoreNum}>{rating.average}</span>
+            <div className={styles.starsRow} aria-hidden="true">
+              {"★★★★★"}
+            </div>
+          </div>
+
+          <div className={styles.favDivider} aria-hidden="true" />
+
+          <div className={styles.reviewsBlock}>
+            <span className={styles.revCountNum}>{rating.count}</span>
             <button
               type="button"
-              className={styles.reviewsLink}
-              aria-label={`${rating.count} reviews — scroll to reviews`}
+              className={styles.revLink}
+              onClick={() => {
+                document.getElementById("reviews")?.scrollIntoView({ behavior: "smooth" });
+              }}
             >
-              {rating.count} Reviews
+              Reviews
             </button>
           </div>
         </div>
       </div>
 
-      {/* Highlights */}
+      {/* Hosted by row */}
+      <div className={styles.hostRow}>
+        <div className={styles.hostAvatar}>
+          <span>MIRASHYA</span>
+        </div>
+        <div className={styles.hostMeta}>
+          <h3 className={styles.hostTitle}>Hosted by {host.name}</h3>
+          <p className={styles.hostSub}>{host.hostingYears || "2 years hosting"}</p>
+        </div>
+      </div>
+
+      <hr className={styles.inlineDivider} />
+
+      {/* Highlights list */}
       <ul className={styles.highlights} aria-label="Property highlights">
         {highlights.map((h, i) => (
           <li key={i} className={styles.highlight}>
             <div className={styles.highlightIcon}>
               {getHighlightIcon(h.icon)}
             </div>
-            <div>
+            <div className={styles.highlightContent}>
               <p className={styles.highlightTitle}>{h.title}</p>
               <p className={styles.highlightDesc}>{h.description}</p>
             </div>
           </li>
         ))}
       </ul>
+
+      <hr className={styles.inlineDivider} />
+
+      {/* Translation notice banner */}
+      <div className={styles.translationBox}>
+        <span>Some info has been automatically translated. </span>
+        <button
+          type="button"
+          className={styles.showOriginalBtn}
+          onClick={() => setShowOriginal(!showOriginal)}
+        >
+          {showOriginal ? "Show translated" : "Show original"}
+        </button>
+      </div>
+
+      {/* Description */}
+      <div className={styles.descBlock}>
+        <p className={`${styles.descText} ${!descExpanded ? styles.descClamped : ""}`}>
+          {descText}
+        </p>
+        <button
+          type="button"
+          className={styles.showMoreBtn}
+          onClick={() => setDescExpanded(!descExpanded)}
+        >
+          <span>{descExpanded ? "Show less" : "Show more"}</span>
+          <span aria-hidden="true" className={styles.moreArrow}> &gt;</span>
+        </button>
+      </div>
+
+      <hr className={styles.inlineDivider} />
+
+      {/* Where you'll sleep */}
+      <div className={styles.sleepSection}>
+        <h2 className={styles.sleepHeading}>Where you'll sleep</h2>
+        <div className={styles.sleepGrid}>
+          <div className={styles.sleepCard}>
+            <div className={styles.sleepImgWrap}>
+              <img
+                src="/images/main-property/bedroom01.avif"
+                alt="Bedroom"
+                className={styles.sleepImg}
+              />
+            </div>
+            <h3 className={styles.sleepRoomTitle}>Bedroom</h3>
+            <p className={styles.sleepBedType}>1 double bed</p>
+          </div>
+
+          <div className={styles.sleepCard}>
+            <div className={styles.sleepImgWrap}>
+              <img
+                src="/images/main-property/livingroom01.avif"
+                alt="Living room"
+                className={styles.sleepImg}
+              />
+            </div>
+            <h3 className={styles.sleepRoomTitle}>Living room</h3>
+            <p className={styles.sleepBedType}>1 sofa</p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

@@ -7,7 +7,7 @@
   background: var(--color-white);
   border-bottom: 1px solid var(--color-gray-300);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  height: 80px;
+  height: 56px;
   display: flex;
   align-items: center;
   transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease;
@@ -58,7 +58,7 @@
   display: flex;
   align-items: center;
   font-size: 14px;
-  font-weight: var(--font-weight-medium);
+  font-weight: 500;
   color: var(--color-gray-700);
   background: none;
   border: none;
@@ -74,17 +74,17 @@
 
 .activeTab {
   color: var(--color-gray-900);
-  font-weight: var(--font-weight-semibold);
+  font-weight: 700;
 }
 
 .activeBar {
   position: absolute;
-  bottom: 0;
+  bottom: 11px;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 2px;
   background: var(--color-gray-900);
-  border-radius: 2px 2px 0 0;
+  border-radius: 1px;
 }
 
 .rightSummary {
@@ -142,7 +142,7 @@
   padding: 0;
   font-size: 12px;
   color: var(--color-gray-600);
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
   font-family: inherit;
 }
@@ -152,12 +152,12 @@
 }
 
 .reserveBtn {
-  background: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
+  background: linear-gradient(to right, #E51E4D 0%, #D70566 100%);
   color: var(--color-white);
   border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 16px;
+  border-radius: 9999px;
+  padding: 10px 24px;
+  font-size: 15px;
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
@@ -165,7 +165,7 @@
 }
 
 .reserveBtn:hover {
-  opacity: 0.94;
+  opacity: 0.92;
   transform: scale(1.02);
 }
 
@@ -177,6 +177,7 @@
   .tabList {
     gap: 16px;
   }
+
   .reserveBtn {
     padding: 10px 18px;
     font-size: 14px;

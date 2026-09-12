@@ -1,27 +1,74 @@
-﻿# Airbnb Desktop Listing Clone — "Romantic Jacuzzi 1BHK Condo/Isle | Himadhar US19"
+# Airbnb Desktop Listing Clone — Candolim, Goa
 
-A pixel-accurate, high-fidelity desktop-only clone of the Airbnb property listing page, built with **React**, **Vite**, and **CSS Modules**.
-
----
-
-## 🎯 Overview & Scope
-
-This project recreates the three major view experiences of the reference Airbnb listing:
-1. **Listing Page**: Complete property information, sticky desktop header, 5-image hero mosaic gallery, structured overview, amenities grid with custom icons, host profile with verified details, category review breakdown, styled location map, rules/policies, and desktop footer.
-2. **Photo Tour Overlay**: Full-screen white gallery view featuring a synchronized thumbnail sidebar, active room metadata, photo counter, and zoom inspection.
-3. **Lightbox Modal**: Focused dark-overlay media viewer with smooth entrance animations, keyboard navigation (`ArrowLeft`, `ArrowRight`, `Escape`), focus trapping, live counters, and disabled edge bounds.
+A pixel-accurate, high-fidelity desktop clone of the Airbnb serviced apartment listing page, built with **React**, **Vite**, and **CSS Modules**.
 
 ---
 
-## 🛠️ Tech Stack & Technical Choices
+## 🎯 Overview & Key Features
 
-- **Core Framework**: React 18 (pure JSX, modern hooks architecture)
-- **Bundler & Dev Server**: Vite 5
-- **Styling Architecture**: Scoped CSS Modules with custom design tokens (`src/styles/index.css`)
-- **Typography**: Google Fonts (*Nunito Sans* as high-fidelity Circular fallback)
-- **Icons**: Inline scalable SVGs matching Airbnb's exact iconography system
-- **State Management**: Clean decoupled custom hooks (`useAppState`, `useLightbox`) without heavy third-party state libraries
-- **Storage**: Browser `localStorage` persistence for wishlist / Save state
+This project recreates the full desktop experience of the reference Airbnb listing with high attention to visual fidelity, micro-interactions, and responsive layout:
+
+1. **Header & Search Bar**:
+   - Airbnb desktop branding with custom house illustration in the search pill (`searchbar-house.png`).
+   - "Anywhere | Anytime | Add guests" search pill with hover shadow effect.
+   - Host link, language/currency modal trigger, and user hamburger menu.
+
+2. **Sticky Sub-Header Navigation (`StickyListingNav`)**:
+   - Smooth slide-in navigation bar appearing on scroll past the hero gallery.
+   - Tab anchors: **Photos**, **Amenities**, **Reviews**, and **Location** with active indicator bar.
+   - Compact summary containing pricing (`₹28,499 for 5 nights`), rating score (`★ 4.95 · 19 reviews`), and rounded gradient **Reserve** button (`#E51E4D` → `#D70566`).
+
+3. **Hero Photo Gallery & Modal Views**:
+   - 5-image mosaic grid with subtle hover zoom and "Show all photos" trigger.
+   - **Photo Tour Overlay**: Synchronized thumbnail sidebar and high-res image view.
+   - **Lightbox Modal**: Dark-overlay media viewer with keyboard navigation (`ArrowLeft`, `ArrowRight`, `Escape`) and boundary clamping.
+
+4. **Property Overview & "Where you'll sleep"**:
+   - Entire serviced apartment specs (2 guests · 1 bedroom · 1 bed · 1 bathroom).
+   - "Where you'll sleep" preview cards with bedroom and living room images.
+   - Expandable description with inline toggle.
+
+5. **Amenities Matrix**:
+   - 19 categorized amenities with custom SVG icons (Kitchen, Wi-Fi, Pool, Air conditioning, etc.).
+   - Expandable full amenities modal dialog.
+
+6. **Static Calendar (`DatePicker`)**:
+   - Two-month display (October 2026 & November 2026) locked to **18 Oct 2026 – 23 Oct 2026** (5 nights in Candolim).
+   - Highlighted in-range selection bar and strikethrough styling for unavailable dates.
+
+7. **Sticky Booking Card (`BookingCard`)**:
+   - Floating sidebar card synchronized with calendar dates and guest counts.
+   - Price calculation breakdown with cleaning and service fees.
+
+8. **Reviews Section (`ReviewsSection`)**:
+   - Centered **4.95** rating header flanked by laurel graphics (`laurel-left.png` & `laurel-right.png`).
+   - Overall rating histogram and 6 category breakdown metrics (Cleanliness, Accuracy, Check-in, Communication, Location, Value).
+   - Horizontally scrollable review filter chips carousel.
+   - Review cards with interactive **"Show more >" / "Show less >"** toggle for expanded review text.
+
+9. **Location Map (`LocationSection`)**:
+   - Interactive Leaflet map centered on Candolim, Goa with custom circular location pin and zoom controls.
+   - Neighborhood highlights and static "Show more >" link.
+
+10. **"Meet your host" Section (`HostSection`)**:
+    - Dual-column host card: Mirashya Homes branding avatar with verified checkmark badge, title, and role on the left; Reviews (1,463), Rating (4.68★), and Hosting tenure (2 years) stats on the right.
+    - Host personal bio tags ("Born in the 80s", "Where I went to school: NICMAR GOA") positioned under the host card.
+    - 8 Co-hosts avatar grid, response rate details, "Message host" action button, and Airbnb payment security note.
+
+11. **Policies & Footer (`ThingsToKnow` & `Footer`)**:
+    - 3-column policies grid: Cancellation policy, House rules, and Safety & property.
+    - Comprehensive desktop footer with support links, hosting resources, and localized legal links.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Core Framework**: React 18 (Hooks-based functional architecture)
+- **Build Tool**: Vite
+- **Styling Architecture**: Scoped CSS Modules with centralized design tokens (`src/styles/index.css`)
+- **Mapping Engine**: Leaflet & React-Leaflet with OpenStreetMap tiles
+- **Typography**: Google Fonts (*Nunito Sans* / *Circular* system fallbacks)
+- **State Management**: Scoped custom hooks (`useAppState`, `useLightbox`)
 
 ---
 
@@ -35,7 +82,7 @@ This project recreates the three major view experiences of the reference Airbnb 
 
 ```bash
 # Clone or navigate to the project root
-cd Playpower
+cd Airbnb_clone
 
 # Install dependencies
 npm install
@@ -44,123 +91,76 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173/`.
+The application will be available locally at `http://localhost:5173/`.
 
 ### Production Build
 
 ```bash
-# Compile and optimize production assets
+# Build production bundle
 npm run build
 
-# Preview the production build locally
+# Preview production build locally
 npm run preview
 ```
 
 ---
 
-## 📐 Architecture & Component Structure
+## 📁 Component Directory Structure
 
 ```
-App
-├── Header (Sticky desktop navigation with search pill and user menu)
-├── ListingPage
-│   ├── ListingHeader (Title, rating, "Guest favourite" badge, Share, Save)
-│   ├── PhotoGallery (5-image mosaic with hover zoom & "Show all photos" button)
-│   └── [1120px Content Grid: 1fr + 380px]
-│       ├── Main Content Column (Left)
-│       │   ├── PropertyOverview (Type, room stats, badge, highlight rows)
-│       │   ├── HostSection (Host avatar, response stats, bio, safety note)
-│       │   ├── Description (About this place with expandable "Show more")
-│       │   ├── Amenities (19 category amenities with SVG icons & expander)
-│       │   ├── ReviewsSection (Category score progress bars & 6 review cards)
-│       │   └── LocationSection (Styled map container with pin & neighborhood bio)
-│       ├── Sticky Sidebar (Right)
-│       │   └── BookingCard (Pricing, date/guest triggers, reserve gradient, breakdown)
-│       └── Full Width Lower Section
-│           ├── ThingsToKnow (3-column grid: House Rules, Safety, Cancellation)
-│           └── Footer (3 link columns, currency/language selectors, legal & socials)
-├── PhotoTour (Overlay dialog with 360px thumbnail strip & synchronized viewer)
-└── Lightbox (Dark modal dialog with centered image, keyboard arrows & focus trap)
-```
-
----
-
-## 🔄 State Machine & Interaction Flows
-
-```
-[Listing Page]
-  │
-  ├── Click Hero Image (0-4) ───────► [Lightbox Modal (index)]
-  │                                        │
-  │                                    [Close/Esc] ──► [Listing Page (Focus Restored)]
-  │
-  └── Click "Show all photos" ───────► [Photo Tour (Overlay)]
-                                           │
-                                       ├── Click Thumbnail ──► [Updates View + Scrolls Thumb]
-                                           │
-                                       ├── Click Main Image ─► [Lightbox Modal (index)]
-                                       │                           │
-                                       │                       [Close/Esc] ──► [Photo Tour]
-                                       │
-                                       └── Click "All photos" / Esc ──► [Listing Page]
+src/
+├── assets/                  # SVG and static icon assets
+├── components/
+│   ├── amenities/           # Amenities grid and modal dialog
+│   ├── booking/             # DatePicker (static calendar) and BookingCard
+│   ├── lightbox/            # Fullscreen dark lightbox image viewer
+│   ├── photo-tour/          # Fullscreen photo tour modal with thumbnail strip
+│   ├── reviews/             # Review category chips carousel
+│   ├── sticky-nav/          # Sticky sub-header navigation bar
+│   ├── Description.jsx      # Property description component
+│   ├── Footer.jsx           # Listing page footer
+│   ├── Header.jsx           # Main sticky navigation header
+│   ├── HostSection.jsx      # "Meet your host" card, co-hosts, and bio
+│   ├── ListingHeader.jsx    # Listing title, share/save actions
+│   ├── ListingPage.jsx      # Main layout assembly
+│   ├── LocationSection.jsx  # Interactive map & neighborhood info
+│   ├── NearbyStays.jsx      # Recommendations carousel
+│   ├── PhotoGallery.jsx     # 5-image hero mosaic
+│   ├── PropertyOverview.jsx # Room stats, sleep section, highlights
+│   ├── ReviewsSection.jsx   # Hero 4.95 score, breakdown, and cards
+│   └── ThingsToKnow.jsx     # House rules, safety & cancellation
+├── data/
+│   ├── amenities.js         # Amenities list & categorizations
+│   ├── images.js            # Image gallery dataset
+│   ├── property.js          # Main listing metadata & host info
+│   └── reviews.js           # Reviews data with full text expansions
+├── hooks/
+│   ├── useAppState.js       # Global modal/view coordination
+│   ├── useFavorites.js      # LocalStorage wishlist persistence
+│   └── useLightbox.js       # Lightbox index navigation & keyboard hooks
+└── styles/
+    └── index.css            # Global design tokens (colors, spacing, typography)
 ```
 
 ---
 
-## ⌨️ Accessibility & Keyboard Navigation Matrix
+## ⌨️ Accessibility & Interaction Controls
 
-| View | Key / Action | Result |
+| Component | Key / Action | Result |
 | :--- | :--- | :--- |
-| **Global** | `Tab` / `Shift+Tab` | Logical sequential focus order with high-visibility focus ring |
-| **Listing** | Click Heart button | Toggles Saved state with `aria-pressed` & persists to `localStorage` |
-| **Listing** | "Show more" | Expands full property description inline |
-| **Listing** | "Show all amenities" | Expands all 19 amenities with custom SVG icons |
-| **Lightbox** | `ArrowRight` | Navigates to next photo (clamped at last photo) |
-| **Lightbox** | `ArrowLeft` | Navigates to previous photo (clamped at first photo) |
-| **Lightbox** | `Escape` | Closes Lightbox and returns focus to the trigger element |
-| **Lightbox** | Backdrop Click | Closes Lightbox (clicking image does not close) |
-| **Lightbox** | `Tab` | Trapped inside the modal dialog |
-| **Photo Tour** | `ArrowDown` | Selects next image & auto-scrolls thumbnail into view |
-| **Photo Tour** | `ArrowUp` | Selects previous image & auto-scrolls thumbnail into view |
-| **Photo Tour** | `Escape` | Closes Photo Tour and restores focus to "Show all photos" |
+| **Global** | `Tab` / `Shift+Tab` | Accessible sequential focus navigation |
+| **Listing** | Click Heart Button | Toggles Saved state & persists to `localStorage` |
+| **Reviews** | Click "Show more >" | Toggles review to "Show less >" and displays full review text |
+| **Gallery** | Click Hero Image | Opens Lightbox modal at selected image index |
+| **Gallery** | "Show all photos" | Opens full-screen Photo Tour overlay |
+| **Lightbox** | `ArrowRight` / `ArrowLeft` | Navigates forward / backward with boundary clamping |
+| **Lightbox** | `Escape` / Backdrop Click | Closes Lightbox and returns focus to trigger |
+| **Photo Tour**| `Escape` | Closes Photo Tour and restores focus |
 
 ---
 
-## 🤖 AI-Assisted Development Workflow
+## 🔍 Verification & Performance
 
-Development followed a strict 5-phase engineering protocol:
-
-1. **Phase 1 — Project Foundation & Reference Analysis**:
-   - Analyzed reference screenshots and UI hierarchy.
-   - Initialized React + Vite workspace with CSS Modules.
-   - Built centralized static data structures (`property.js`, `images.js`, `reviews.js`).
-   - Defined design tokens (`src/styles/index.css`) for spacing, colors, shadows, and radii.
-
-2. **Phase 2 — Listing Page Reconstruction**:
-   - Recreated all 13 core listing page components.
-   - Designed 5-image mosaic layout with hover micro-interactions.
-   - Implemented sticky Booking Card with price calculation breakdown.
-
-3. **Phase 3 — Photo Tour & Lightbox Systems**:
-   - Developed full-screen `PhotoTour` with auto-scrolling thumbnail list.
-   - Built dark `Lightbox` with smooth scale/fade animations and non-wrapping boundary guards.
-   - Created decoupled hooks (`useAppState`, `useLightbox`) for view orchestration and focus management.
-
-4. **Phase 4 — Accessibility, Interaction & Production Polish**:
-   - Performed comprehensive accessibility audit: added semantic landmarks (`role="dialog"`, `role="group"`, `aria-modal`), fixed `<label>` associations in `BookingCard`.
-   - Connected `localStorage` wishlist persistence.
-   - Added image fallback resiliency (`onError` handlers) for offline/CORS reliability.
-
-5. **Phase 5 — Pixel-Perfect QA & Submission Preparation**:
-   - Verified layouts across desktop viewports (1280px, 1366px, 1440px, 1536px).
-   - Validated clean production build (0 errors, 0 warnings).
-   - Cleaned redundant dependencies, imports, and temporary development files.
-
----
-
-## 🔍 Verification & Quality Metrics
-
-- **Production Build**: Clean compilation in `<1s` (`66 modules transformed`).
-- **Gzip Bundle Size**: JS `~63 kB`, CSS `~6.5 kB`.
-- **Target Viewports Verified**: Primary QA at `1440px`; responsive desktop support at `1280px`, `1366px`, `1536px`.
+- **Production Build**: Clean compilation with zero errors (`npm run build`).
+- **Responsive Layout**: Designed for standard desktop viewports (1280px, 1366px, 1440px, 1536px, 1920px).
 - **Reduced Motion**: Full support via `@media (prefers-reduced-motion: reduce)`.

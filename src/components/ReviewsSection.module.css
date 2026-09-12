@@ -1,4 +1,4 @@
-﻿.section {
+.section {
   padding-top: 16px;
   padding-bottom: 24px;
 }
@@ -23,9 +23,12 @@
   margin-bottom: 12px;
 }
 
-.laurelSvg {
-  color: var(--color-gray-900);
+.laurelImg {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
   flex-shrink: 0;
+  display: block;
 }
 
 .heroScoreCenter {

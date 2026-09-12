@@ -1,4 +1,4 @@
-﻿.section {
+.section {
   padding-top: 8px;
   padding-bottom: 8px;
 }
@@ -126,17 +126,13 @@
   color: var(--color-gray-900);
   font-size: 14px;
   font-weight: var(--font-weight-semibold);
-  cursor: pointer;
+  cursor: default;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color var(--transition-fast), background var(--transition-fast);
   position: relative;
   z-index: 1;
-}
-
-.dayBtn:hover {
-  border-color: var(--color-gray-900);
+  user-select: none;
 }
 
 .daySelectedSingle,
@@ -150,6 +146,12 @@
 .dayInRange {
   background: transparent;
   color: var(--color-gray-900);
+}
+
+.dayDisabled {
+  color: #b0b0b0 !important;
+  text-decoration: line-through;
+  font-weight: var(--font-weight-regular);
 }
 
 .footer {

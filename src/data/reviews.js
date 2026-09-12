@@ -1,4 +1,4 @@
-﻿/**
+/**
  * reviews.js
  * Review dataset matching the reference website (Image 1).
  */
@@ -26,7 +26,8 @@ export const reviews = [
     tenure: "3 years on Airbnb",
     date: "2 weeks ago",
     rating: 5,
-    text: "We had a wonderful stay. The apartment was clean, comfortable, and exactly as shown in the photos. The host was very responsive and helpful throughout our stay. We would definitely recommend this place and would love to stay here again.",
+    text: "We had a wonderful stay. The apartment was clean, comfortable, and exactly as shown in the photos. The host was very responsive and helpful throughout our stay...",
+    fullText: "We had a wonderful stay. The apartment was clean, comfortable, and exactly as shown in the photos. The host was very responsive and helpful throughout our stay. We would definitely recommend this place and would love to stay here again. The location is peaceful yet conveniently close to great cafes and the beach.",
     hasShowMore: true,
   },
   // Left Column
@@ -51,7 +52,8 @@ export const reviews = [
     tenure: "4 years on Airbnb",
     date: "May 2026",
     rating: 5,
-    text: "We had an amazing stay at this property in Goa! The entire home was spotless and exceptionally well-maintained, making us feel comfortable from the moment we arrived. The cleanliness standards were truly impressive, with every corner of the house looking fresh and pristine....",
+    text: "We had an amazing stay at this property in Goa! The entire home was spotless and exceptionally well-maintained, making us feel comfortable from the moment we arrived. The cleanliness standards were truly impressive, with every corner of the house looking fresh and pristine...",
+    fullText: "We had an amazing stay at this property in Goa! The entire home was spotless and exceptionally well-maintained, making us feel comfortable from the moment we arrived. The cleanliness standards were truly impressive, with every corner of the house looking fresh and pristine. The amenities like high-speed Wi-Fi, air conditioning, and a fully equipped kitchen made our vacation effortless. Nitish and the co-hosts were always accessible and shared fantastic local dining recommendations in Candolim. Will definitely choose to stay here whenever we visit Goa next!",
     hasShowMore: true,
   },
   // Left Column

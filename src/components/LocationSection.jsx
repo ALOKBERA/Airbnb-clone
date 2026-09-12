@@ -5,7 +5,6 @@ import styles from "./LocationSection.module.css";
  * LocationSection — "Where you will be" section with authentic Airbnb map styling.
  */
 export default function LocationSection({ property }) {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(14);
 
   const location = property?.location || { city: "Candolim", state: "Goa", country: "India" };
@@ -84,22 +83,16 @@ export default function LocationSection({ property }) {
       <div className={styles.descWrap}>
         <p className={styles.description}>
           {locationText}
-          {isExpanded && (
-            <span>
-              {" "}You are conveniently close to top beach clubs, authentic Goan seafood shacks, and water sports centers while enjoying a serene, quiet neighborhood.
-            </span>
-          )}
         </p>
 
         <button
           type="button"
           className={styles.showMapBtn}
-          onClick={() => setIsExpanded(!isExpanded)}
-          aria-expanded={isExpanded}
+          aria-expanded="false"
         >
-          <span>{isExpanded ? "Show less" : "Show more"}</span>
-          <svg viewBox="0 0 32 32" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="3" className={isExpanded ? styles.chevronUp : styles.chevronDown} aria-hidden="true">
-            <path d="M6 10l10 10 10-10" strokeLinecap="round" strokeLinejoin="round"/>
+          <span>Show more</span>
+          <svg viewBox="0 0 32 32" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="3" className={styles.chevronDown} aria-hidden="true">
+            <path d="M6 10l10 10 10-10" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
       </div>

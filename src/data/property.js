@@ -17,7 +17,7 @@ export const property = {
   stats: {
     guests: 3,
     bedrooms: 1,
-    beds: 2,
+    beds: 1,
     bathrooms: 1,
   },
   rating: {
@@ -28,8 +28,9 @@ export const property = {
   badge: "Guest favourite",
   superhost: false,
   host: {
-    name: "Himadhar",
-    since: "2017",
+    name: "Mirashya Homes",
+    since: "2024",
+    hostingYears: "2 years hosting",
     avatar: "/images/host-avatar.jpg",
     isSuperhost: false,
     responseRate: "100%",
@@ -48,32 +49,23 @@ export const property = {
     discountPercent: 10,
   },
   description: [
-    "Welcome to Himadhar US19 — a romantic and luxurious 1BHK condo nestled in the serene neighbourhood of Candolim, North Goa. " +
-    "Designed for couples and small families looking for comfort, elegance, and peace, our space features a private Jacuzzi on the balcony with lush green views.",
-    "The apartment is fully air-conditioned, with a tastefully decorated living room, fully equipped modular kitchen, ultra-comfortable king-size bed, and high-speed Wi-Fi (100 Mbps). " +
-    "Situated inside a gated 24/7 secure community with a large shared swimming pool, landscaped gardens, and dedicated covered parking.",
-    "Located just 5 minutes (800m) from Candolim Beach, famous shacks, fine dining restaurants, supermarkets, and nightlife spots, yet tucked away from the noise.",
+    "🌴 Plan Your Relaxing Holiday at Amor De Goa by Mirashya Homes! ✨ Stay in this cozy 1BHK in the heart of Candolim, featuring a private jacuzzi 🛁 for the perfect unwind. Enjoy high-speed WiFi 💻, Smart TV 📺, pet-friendly comfort 🐾, and stylish interiors. Just minutes from Candolim Beach 🏖️, popular cafés, restaurants, and nightlife 🍹, it's the perfect Goa getaway with shared resort pool access and serene tropical vibes.",
   ],
   highlights: [
     {
+      icon: "outdoor",
+      title: "Outdoor entertainment",
+      description: "The pool and alfresco dining are great for summer trips.",
+    },
+    {
+      icon: "cool",
+      title: "Designed for staying cool",
+      description: "Beat the heat with the A/C and ceiling fan.",
+    },
+    {
       icon: "door",
       title: "Self check-in",
-      description: "Check yourself in with the keypad.",
-    },
-    {
-      icon: "medal",
-      title: "Guest favourite",
-      description: "One of the most loved homes on Airbnb, according to guests.",
-    },
-    {
-      icon: "pin",
-      title: "Great location",
-      description: "95% of recent guests gave the location a 5-star rating.",
-    },
-    {
-      icon: "calendar",
-      title: "Free cancellation",
-      description: "Cancel before Dec 14 for a partial refund.",
+      description: "You can check in with the building staff.",
     },
   ],
   amenities: [
