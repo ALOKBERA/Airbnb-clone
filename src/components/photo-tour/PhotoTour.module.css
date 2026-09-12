@@ -171,8 +171,8 @@
 }
 
 .categoryNavThumb {
-  width: 95px;
-  height: 95px;
+  width: 102px;
+  height: 102px;
   border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
