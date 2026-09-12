@@ -1,8 +1,8 @@
-﻿import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import styles from "./Lightbox.module.css";
 
 /**
- * Lightbox — full-screen dark image overlay.
+ * Lightbox — full-screen white image overlay.
  *
  * Keyboard:  ArrowLeft / ArrowRight = navigate; Escape = close
  * Click:     backdrop = close; image = no-op; prev/next = navigate
@@ -13,7 +13,7 @@ import styles from "./Lightbox.module.css";
  *   images          Array of { src, fallback, alt, caption }
  *   currentIndex    Active image index
  *   setCurrentIndex Setter
- *   onClose         Called to close
+ *   onClose         Called to close (back to Photo Tour)
  */
 export default function Lightbox({ images, currentIndex, setCurrentIndex, onClose }) {
   const total   = images.length;
@@ -90,36 +90,48 @@ export default function Lightbox({ images, currentIndex, setCurrentIndex, onClos
     >
       {/* Top bar */}
       <div className={styles.topBar}>
-        <button
-          ref={closeRef}
-          type="button"
-          className={styles.closeBtn}
-          onClick={onClose}
-          aria-label="Close photo viewer"
-        >
-          <svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true">
-            <path d="M6 6l20 20M26 6L6 26" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          </svg>
-        </button>
+        {/* Left — Grid / 9-dots button → back to Photo Tour */}
+        <div className={styles.topLeft}>
+          <button
+            type="button"
+            className={styles.gridBtn}
+            onClick={onClose}
+            aria-label="Back to photo tour grid"
+          >
+            <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+              <circle cx="2" cy="2" r="1.4" fill="currentColor"/>
+              <circle cx="8" cy="2" r="1.4" fill="currentColor"/>
+              <circle cx="14" cy="2" r="1.4" fill="currentColor"/>
+              <circle cx="2" cy="8" r="1.4" fill="currentColor"/>
+              <circle cx="8" cy="8" r="1.4" fill="currentColor"/>
+              <circle cx="14" cy="8" r="1.4" fill="currentColor"/>
+              <circle cx="2" cy="14" r="1.4" fill="currentColor"/>
+              <circle cx="8" cy="14" r="1.4" fill="currentColor"/>
+              <circle cx="14" cy="14" r="1.4" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
 
-        <span className={styles.counter} aria-live="polite" aria-atomic="true">
-          {clipped + 1} / {total}
+        {/* Center — room / category name */}
+        <span className={styles.topCenter}>
+          {current?.room || current?.caption || current?.alt || ""}
         </span>
 
-        <div className={styles.topActions}>
-          <button type="button" className={styles.topActionBtn} aria-label="Share">
-            <svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true">
-              <path d="M27 18v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9M16 3v18M9 10l7-7 7 7"
-                fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+        {/* Right — counter + close button */}
+        <div className={styles.topRight}>
+          <span className={styles.counter} aria-live="polite" aria-atomic="true">
+            {clipped + 1} of {total}
+          </span>
+          <button
+            ref={closeRef}
+            type="button"
+            className={styles.closeBtn}
+            onClick={onClose}
+            aria-label="Close photo viewer"
+          >
+            <svg viewBox="0 0 32 32" width="14" height="14" aria-hidden="true">
+              <path d="M6 6l20 20M26 6L6 26" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
             </svg>
-            Share
-          </button>
-          <button type="button" className={styles.topActionBtn} aria-label="Save">
-            <svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true">
-              <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"
-                fill="none" stroke="currentColor" strokeWidth="2"/>
-            </svg>
-            Save
           </button>
         </div>
       </div>
@@ -134,8 +146,8 @@ export default function Lightbox({ images, currentIndex, setCurrentIndex, onClos
           aria-label="Previous photo"
           disabled={atFirst}
         >
-          <svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true">
-            <path d="M20 28 8 16 20 4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg viewBox="0 0 32 32" width="14" height="14" aria-hidden="true">
+            <path d="M20 28 8 16 20 4" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
 
@@ -149,9 +161,6 @@ export default function Lightbox({ images, currentIndex, setCurrentIndex, onClos
             draggable={false}
             onError={handleImgError(current?.fallback)}
           />
-          {current?.caption && (
-            <p className={styles.caption}>{current.caption}</p>
-          )}
         </div>
 
         {/* Next */}
@@ -162,8 +171,8 @@ export default function Lightbox({ images, currentIndex, setCurrentIndex, onClos
           aria-label="Next photo"
           disabled={atLast}
         >
-          <svg viewBox="0 0 32 32" width="16" height="16" aria-hidden="true">
-            <path d="M12 4l12 12-12 12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg viewBox="0 0 32 32" width="14" height="14" aria-hidden="true">
+            <path d="M12 4l12 12-12 12" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
       </div>

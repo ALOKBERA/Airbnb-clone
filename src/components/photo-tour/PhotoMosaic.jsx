@@ -1,4 +1,4 @@
-﻿import styles from "./PhotoTour.module.css";
+import styles from "./PhotoTour.module.css";
 
 /**
  * PhotoMosaic
@@ -59,6 +59,7 @@ export default function PhotoMosaic({ images, onImageClick, globalOffset }) {
                 className={styles.mosaicCell}
                 onClick={() => onImageClick(globalIdx)}
                 aria-label={img.alt || `View photo ${globalIdx + 1}`}
+                data-tour-src={img.src}
               >
                 <img
                   src={img.src}

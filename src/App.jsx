@@ -1,4 +1,4 @@
-﻿import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { images } from "./data/images.js";
 import { allTourImages } from "./data/photoTourData.js";
 import { property } from "./data/property.js";
@@ -38,9 +38,11 @@ export default function App() {
   // Photo Tour state
   const {
     isPhotoTourOpen,
-        openPhotoTour,
+    openPhotoTour,
     closePhotoTour,
-      } = usePhotoTour();
+  } = usePhotoTour();
+
+  const [photoTourTarget, setPhotoTourTarget] = useState(null);
 
   // Lightbox state
   const [isLightboxOpen, setIsLightboxOpen]   = useState(false);
@@ -61,19 +63,22 @@ export default function App() {
     return () => { document.body.style.overflow = ""; };
   }, [isPhotoTourOpen, isLightboxOpen]);
 
-  // ── Open Photo Tour (from listing "Show all photos") ──
-  const handleOpenPhotoTour = useCallback((startIndex = 0) => {
+  // ── Open Photo Tour (from listing "Show all photos" or gallery image click) ──
+  const handleOpenPhotoTour = useCallback((target = null) => {
     listingTriggerRef.current = document.activeElement;
+    setPhotoTourTarget(target);
+    setTourScrollRestore(0);
     openPhotoTour();
   }, [openPhotoTour]);
 
   // ── Close Photo Tour → listing ──
   const handleClosePhotoTour = useCallback(() => {
     closePhotoTour();
+    setPhotoTourTarget(null);
     requestAnimationFrame(() => listingTriggerRef.current?.focus());
   }, [closePhotoTour]);
 
-  // ── Open Lightbox from listing gallery ──
+  // ── Open Lightbox from listing gallery (kept for reference) ──
   const handleOpenLightboxFromListing = useCallback((index) => {
     listingTriggerRef.current = document.activeElement;
     setLightboxImages(images);
@@ -113,8 +118,8 @@ export default function App() {
         images={images}
         isSaved={isSaved}
         onToggleSave={toggleSaved}
-        onShowAllPhotos={handleOpenPhotoTour}
-        onImageClick={handleOpenLightboxFromListing}
+        onShowAllPhotos={() => handleOpenPhotoTour(null)}
+        onImageClick={(index) => handleOpenPhotoTour(images[index])}
       />
 
       {/* Photo Tour overlay — always mounted when isPhotoTourOpen */}
@@ -126,6 +131,7 @@ export default function App() {
           isSaved={isSaved}
           onToggleSave={toggleSaved}
           initialScrollY={tourScrollRestore}
+          targetImage={photoTourTarget}
         />
       )}
 

@@ -1,4 +1,4 @@
-﻿import { useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import { photoTourCategories } from "../../data/photoTourData.js";
 import PhotoTourHeader from "./PhotoTourHeader.jsx";
 import PhotoCategoryNav from "./PhotoCategoryNav.jsx";
@@ -31,17 +31,38 @@ export default function PhotoTour({
   isSaved,
   onToggleSave,
   initialScrollY = 0,
+  targetImage = null,
 }) {
   const internalScrollRef = useRef(null);
   const scrollRef = externalScrollRef ?? internalScrollRef;
   const sectionRefs = useRef({}); // id → DOM element
 
-  // Restore scroll position when mounting (after Lightbox close)
+  // Scroll to target image or restore scroll position on mount
   useEffect(() => {
-    if (scrollRef.current && initialScrollY > 0) {
+    if (targetImage && scrollRef.current) {
+      const targetSrc = typeof targetImage === "string" ? targetImage : targetImage.src;
+      const filename = targetSrc ? targetSrc.split("/").pop() : "";
+
+      const timer = setTimeout(() => {
+        let targetEl = null;
+        if (filename && scrollRef.current) {
+          targetEl = scrollRef.current.querySelector(`[data-tour-src*="${filename}"]`) ||
+                     scrollRef.current.querySelector(`img[src*="${filename}"]`);
+        }
+        if (targetEl && scrollRef.current) {
+          const container = scrollRef.current;
+          const containerTop = container.getBoundingClientRect().top;
+          const elTop = targetEl.getBoundingClientRect().top;
+          const offset = elTop - containerTop - HEADER_HEIGHT + container.scrollTop;
+          container.scrollTo({ top: Math.max(0, offset - 16), behavior: "smooth" });
+        }
+      }, 60);
+
+      return () => clearTimeout(timer);
+    } else if (scrollRef.current && initialScrollY > 0) {
       scrollRef.current.scrollTop = initialScrollY;
     }
-  }, []); // only on mount
+  }, [targetImage]);
 
   // Smooth-scroll to a category section, accounting for sticky header
   const handleCategoryClick = useCallback((id) => {

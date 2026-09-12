@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    PhotoTour.css — Photo Tour scrollable overlay experience
    ============================================================ */
 
@@ -15,8 +15,13 @@
 }
 
 @keyframes ptFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* ── Sticky header ── */
@@ -143,7 +148,7 @@
 .categoryNavInner {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px 20px;
+  gap: 12px 15px;
   padding: 8px 0;
 }
 
@@ -166,9 +171,9 @@
 }
 
 .categoryNavThumb {
-  width: 72px;
-  height: 56px;
-  border-radius: 8px;
+  width: 95px;
+  height: 95px;
+  border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
   background: #F7F7F7;
@@ -184,11 +189,11 @@
 }
 
 .categoryNavLabel {
-  font-size: 12px;
-  color: #555;
-  font-weight: 500;
+  font-size: 14px;
+  color: #222;
+  font-weight: 600;
   white-space: nowrap;
-  max-width: 80px;
+  max-width: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -196,7 +201,8 @@
 /* ── Category section ── */
 .category {
   margin-bottom: 56px;
-  scroll-margin-top: 88px; /* sticky header height + extra breathing room */
+  scroll-margin-top: 88px;
+  /* sticky header height + extra breathing room */
 }
 
 .categoryInner {
@@ -208,7 +214,8 @@
 
 .categoryText {
   position: sticky;
-  top: 88px;  /* stick below the sticky header when scrolling within section */
+  top: 88px;
+  /* stick below the sticky header when scrolling within section */
   padding-top: 4px;
 }
 
