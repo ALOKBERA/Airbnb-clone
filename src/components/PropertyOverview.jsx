@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./PropertyOverview.module.css";
+import MirashyaLogo from "./MirashyaLogo.jsx";
 
 function OutdoorIcon() {
   return (
@@ -112,7 +113,7 @@ export default function PropertyOverview({ property }) {
       {/* Hosted by row */}
       <div className={styles.hostRow}>
         <div className={styles.hostAvatar}>
-          <span>MIRASHYA</span>
+          <MirashyaLogo className={styles.hostLogo} />
         </div>
         <div className={styles.hostMeta}>
           <h3 className={styles.hostTitle}>Hosted by {host.name}</h3>

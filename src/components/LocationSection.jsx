@@ -1,29 +1,14 @@
-import { useState } from "react";
 import styles from "./LocationSection.module.css";
 
 /**
  * LocationSection — "Where you will be" section with authentic Airbnb map styling.
  */
 export default function LocationSection({ property }) {
-  const [zoomLevel, setZoomLevel] = useState(14);
-
   const location = property?.location || { city: "Candolim", state: "Goa", country: "India" };
   const locationText =
     property?.location_description?.text ||
     property?.description?.[4] ||
     "Candolim, Goa, India. Located in the heart of Candolim, just a short walk from the pristine Candolim Beach and vibrant local markets, cafes, and nightlife.";
-
-  // Candolim, Goa coordinates: 15.5175, 73.7663
-  const bboxDelta = 0.04 / (zoomLevel / 14);
-  const minLon = (73.7663 - bboxDelta).toFixed(4);
-  const minLat = (15.5175 - bboxDelta * 0.7).toFixed(4);
-  const maxLon = (73.7663 + bboxDelta).toFixed(4);
-  const maxLat = (15.5175 + bboxDelta * 0.7).toFixed(4);
-
-  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${minLon}%2C${minLat}%2C${maxLon}%2C${maxLat}&layer=mapnik`;
-
-  const handleZoomIn = () => setZoomLevel((z) => Math.min(z + 1, 18));
-  const handleZoomOut = () => setZoomLevel((z) => Math.max(z - 1, 10));
 
   return (
     <section id="location" className={styles.section} aria-labelledby="location-heading">
@@ -34,43 +19,43 @@ export default function LocationSection({ property }) {
 
       {/* Map Container */}
       <div className={styles.mapContainer} aria-label={`Map showing location in ${location.city}, ${location.state}`}>
-        <iframe
-          title={`Map of ${location.city}, ${location.state}`}
-          className={styles.mapIframe}
-          src={mapSrc}
-          loading="lazy"
-          tabIndex={-1}
-        />
+        <div className={styles.mapSurface} aria-hidden="true">
+          <div className={styles.mapGrid} />
+          <div className={styles.mapWater} />
+          <div className={`${styles.mapPark} ${styles.mapParkSmall}`} />
+          <div className={`${styles.mapPark} ${styles.mapParkLarge}`} />
+        </div>
 
-        {/* Center Airbnb House Pin with Pulsing Translucent Ring */}
+        <button type="button" className={styles.searchBtn} aria-label="Search map" title="Search">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8" />
+            <path d="m16 16 5 5" strokeLinecap="round" />
+          </svg>
+        </button>
+
+        {/* Center house pin */}
         <div className={styles.pinOverlay} aria-hidden="true">
-          <div className={styles.pulseRing} />
           <div className={styles.homePinBadge}>
-            <svg viewBox="0 0 32 32" width="18" height="18" fill="white">
-              <path d="M16 2.5L2 14.5h4v15h8v-8h4v8h8v-15h4L16 2.5z" />
+            <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="white" strokeWidth="2.8" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 14.5 16 5l11 9.5v12H5z" />
+              <path d="M12 27V18h8v9" />
             </svg>
-          </div>
-          <div className={styles.mapLabel}>
-            <span>{location.city}, {location.state}</span>
           </div>
         </div>
 
-        {/* Map Zoom Controls */}
+        {/* Static map controls */}
         <div className={styles.mapControls}>
           <button
             type="button"
             className={styles.zoomBtn}
-            onClick={handleZoomIn}
             aria-label="Zoom in on map"
             title="Zoom in"
           >
             +
           </button>
-          <div className={styles.zoomDivider} />
           <button
             type="button"
             className={styles.zoomBtn}
-            onClick={handleZoomOut}
             aria-label="Zoom out of map"
             title="Zoom out"
           >

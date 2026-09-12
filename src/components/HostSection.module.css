@@ -73,14 +73,14 @@
   position: absolute;
   bottom: 0;
   right: -2px;
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: #ff385c;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 2.5px #ffffff, 0 0 0 4px #ff385c;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3.5px #ff385c;
 }
 
 .badgeInner {
@@ -210,6 +210,13 @@
   font-weight: 700;
   color: white;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.coHostAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .coHostName {

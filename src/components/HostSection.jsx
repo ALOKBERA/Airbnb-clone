@@ -1,4 +1,11 @@
 import styles from "./HostSection.module.css";
+import MirashyaLogo from "./MirashyaLogo.jsx";
+import co1Image from "../../image/co1.jpg";
+import co2Image from "../../image/co2.jpg";
+import co3Image from "../../image/co3.jpg";
+import co4Image from "../../image/co4.jpeg";
+import co5Image from "../../image/co5.jpeg";
+import co6Image from "../../image/co6.jpeg";
 
 /**
  * HostSection — "Meet your host" section matching Airbnb original layout.
@@ -7,12 +14,12 @@ import styles from "./HostSection.module.css";
  */
 
 const CO_HOSTS = [
-  { name: "Sharath", initials: "S", color: "#8B6FE8" },
-  { name: "Aman Dev Pahwa", initials: "A", color: "#E8836F" },
-  { name: "Maria Karen Priyanka", initials: "M", color: "#6FB5E8" },
-  { name: "Simran", initials: "Si", color: "#E8C86F" },
-  { name: "Pallavi", initials: "P", color: "#6FE8A8" },
-  { name: "Sanyukta", initials: "Sa", color: "#E86FA0" },
+  { name: "Sharath", initials: "S", image: co1Image },
+  { name: "Aman Dev Pahwa", initials: "A", image: co2Image },
+  { name: "Maria Karen Priyanka", initials: "M", image: co3Image },
+  { name: "Simran", initials: "Si", image: co4Image },
+  { name: "Pallavi", initials: "P", image: co5Image },
+  { name: "Sanyukta", initials: "Sa", image: co6Image },
   { name: "Shruti", initials: "Sh", color: "#F5A0B8" },
   { name: "Amisha", initials: "Am", color: "#A0C4F5" },
 ];
@@ -32,45 +39,11 @@ export default function HostSection({ property }) {
             <div className={styles.cardLeft}>
               <div className={styles.avatarWrap}>
                 <div className={styles.avatar} aria-hidden="true">
-                  <svg viewBox="0 0 100 100" className={styles.avatarSvg}>
-                    {/* Arch line above name */}
-                    <path
-                      d="M 28 40 A 22 22 0 0 1 72 40"
-                      fill="none"
-                      stroke="rgba(255,255,255,0.7)"
-                      strokeWidth="1.5"
-                    />
-                    {/* MIRASHYA */}
-                    <text
-                      x="50"
-                      y="54"
-                      textAnchor="middle"
-                      fill="#ffffff"
-                      fontSize="11"
-                      fontFamily="Georgia, serif"
-                      letterSpacing="1.2"
-                      fontWeight="600"
-                    >
-                      MIRASHYA
-                    </text>
-                    {/* HOMES */}
-                    <text
-                      x="50"
-                      y="65"
-                      textAnchor="middle"
-                      fill="rgba(255,255,255,0.85)"
-                      fontSize="6.5"
-                      fontFamily="sans-serif"
-                      letterSpacing="1.5"
-                      fontWeight="500"
-                    >
-                      HOMES
-                    </text>
-                  </svg>
+                  <MirashyaLogo className={styles.avatarSvg} />
                 </div>
                 <div className={styles.verifiedBadge} aria-label="Verified host">
                   <div className={styles.badgeInner}>
-                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="white" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
                   </div>
@@ -133,10 +106,10 @@ export default function HostSection({ property }) {
                 <div key={ch.name} className={styles.coHost}>
                   <div
                     className={styles.coHostAvatar}
-                    style={{ background: ch.color }}
+                    style={ch.image ? undefined : { background: ch.color }}
                     aria-hidden="true"
                   >
-                    {ch.initials}
+                    {ch.image ? <img src={ch.image} alt="" /> : ch.initials}
                   </div>
                   <span className={styles.coHostName}>{ch.name}</span>
                 </div>
